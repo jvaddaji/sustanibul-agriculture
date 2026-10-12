@@ -1,68 +1,151 @@
-// Existing website policy data
+// Government policies dataset (5 Key Policies with slugs, badges, and summaries)
 const policies = [
   {
+    slug: "nmsa",
+    name: "National Mission for Sustainable Agriculture (NMSA)",
+    badge: "Climate Resilience",
+    description:
+      "Promotes climate-resilient practices, integrated farming systems (IFS), and on-farm natural resource conservation."
+  },
+  {
+    slug: "pkvy",
+    name: "Paramparagat Krishi Vikas Yojana (PKVY)",
+    badge: "Organic Farming",
+    description:
+      "Supports cluster-based chemical-free organic farming with Participatory Guarantee System (PGS-India) certification."
+  },
+  {
+    slug: "pmksy",
+    name: "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+    badge: "Water Conservation",
+    description:
+      "Expands irrigation access and maximizes water-use efficiency through micro-irrigation under 'Per Drop More Crop'."
+  },
+  {
+    slug: "soil-health-card",
     name: "Soil Health Card Scheme",
+    badge: "Soil Management",
     description:
-      "Soil testing and nutrient recommendations to support informed fertilizer use."
+      "Provides 12-parameter soil testing and tailored nutrient recommendations to support informed, balanced fertilizer use."
   },
   {
-    name: "Paramparagat Krishi Vikas Yojana",
+    slug: "natural-farming",
+    name: "National Mission on Natural Farming (NMNF)",
+    badge: "Chemical-Free Farming",
     description:
-      "Supports organic farming through eligible farmer groups and related activities."
-  },
-  {
-    name: "Pradhan Mantri Krishi Sinchayee Yojana",
-    description:
-      "Promotes better irrigation and efficient water use."
-  },
-  {
-    name: "National Mission for Sustainable Agriculture",
-    description:
-      "Promotes sustainable practices and climate-resilient agriculture."
+      "Encourages chemical-free agroecology utilizing indigenous cow formulations (Jeevamrit & Beejamrit) and in-situ biomass."
   }
 ];
 
-// Existing website practices data
+// Sustainable farming practices dataset
 const practices = [
   {
     name: "Crop Rotation",
-    description: "Growing different crops in sequence to support soil health."
+    description: "Growing different crops in sequence to support soil health and break pest cycles."
   },
   {
     name: "Drip Irrigation",
-    description: "Delivering water near plant roots to improve water efficiency."
+    description: "Delivering water near plant roots to minimize evaporation and maximize water efficiency."
   },
   {
     name: "Composting",
-    description: "Using decomposed organic material to improve soil."
+    description: "Using decomposed organic material to improve soil biological activity and humus."
   },
   {
     name: "Integrated Pest Management",
-    description: "Combining suitable methods to manage crop pests."
+    description: "Combining biological, cultural, and mechanical controls to manage pests safely."
   }
 ];
 
-// Existing render functions for policies and practices
-function showCards(items, containerId) {
+// Helper to determine destination URL for policy details
+function getPolicyUrl(slug) {
+  if (window.location.protocol === 'file:') {
+    return `policy-detail.html?policy=${slug}`;
+  }
+  return `/policies/${slug}`;
+}
+
+// Render functions for policies and practices
+function showPracticeCards(items, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
   container.innerHTML = items.map(item => `
-    <article class="policy-card">
+    <article class="practice-card policy-card">
       <h3>${item.name}</h3>
       <p>${item.description}</p>
     </article>
   `).join("");
 }
 
+function showCards(items, containerId) {
+  if (containerId === "practice-list") {
+    showPracticeCards(items, containerId);
+    return;
+  }
+  renderPolicies();
+}
+
 function renderPolicies(query = "") {
+  const container = document.getElementById("policy-list");
+  if (!container) return;
+
+  const cleanQuery = query.toLowerCase().trim();
   const filtered = policies.filter(policy =>
-    (policy.name + " " + policy.description)
+    (policy.name + " " + policy.description + " " + policy.badge)
       .toLowerCase()
-      .includes(query.toLowerCase())
+      .includes(cleanQuery)
   );
 
-  showCards(filtered, "policy-list");
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="no-policies-found">
+        <p>No government schemes found matching "<strong>${query}</strong>".</p>
+        <p class="no-policies-tip">Try searching for keywords like <em>Soil</em>, <em>Water</em>, <em>Organic</em>, <em>Irrigation</em>, or <em>Climate</em>.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(item => {
+    const detailUrl = getPolicyUrl(item.slug);
+    return `
+      <article class="policy-card clickable-policy-card" data-slug="${item.slug}" tabindex="0" role="link" aria-label="View details for ${item.name}">
+        <div class="policy-card-top">
+          <span class="policy-card-badge">${item.badge}</span>
+        </div>
+        <h3 class="policy-card-title">${item.name}</h3>
+        <p class="policy-card-desc">${item.description}</p>
+        <div class="policy-card-footer">
+          <a href="${detailUrl}" class="view-details-btn" data-slug="${item.slug}">
+            View Full Details &rarr;
+          </a>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  // Attach click and keyboard event listeners to each policy card
+  const cards = container.querySelectorAll(".clickable-policy-card");
+  cards.forEach(card => {
+    const slug = card.getAttribute("data-slug");
+    const targetUrl = getPolicyUrl(slug);
+
+    // Click handler: entire card is clickable
+    card.addEventListener("click", (e) => {
+      // Allow default link navigation if clicking directly on link
+      if (e.target.closest("a")) return;
+      window.location.href = targetUrl;
+    });
+
+    // Keyboard accessibility: Enter or Space triggers navigation
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        window.location.href = targetUrl;
+      }
+    });
+  });
 }
 
 renderPolicies();

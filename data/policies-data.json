@@ -1,0 +1,42 @@
+{
+  "nmsa": {
+    "id": "nmsa",
+    "slug": "nmsa",
+    "name": "National Mission for Sustainable Agriculture (NMSA)",
+    "shortName": "National Mission for Sustainable Agriculture",
+    "tagline": "Climate-Resilient Agriculture, Soil Health & Integrated Resource Conservation",
+    "responsibleEntity": "Department of Agriculture & Farmers Welfare (DA&FW), Ministry of Agriculture & Farmers Welfare, Government of India"
+  },
+  "pkvy": {
+    "id": "pkvy",
+    "slug": "pkvy",
+    "name": "Paramparagat Krishi Vikas Yojana (PKVY)",
+    "shortName": "Paramparagat Krishi Vikas Yojana",
+    "tagline": "Revitalizing Traditional Knowledge & Chemical-Free Organic Farming via Farmer Clusters",
+    "responsibleEntity": "Integrated Nutrient Management (INM) Division, Department of Agriculture & Farmers Welfare, Ministry of Agriculture & Farmers Welfare, Government of India"
+  },
+  "pmksy": {
+    "id": "pmksy",
+    "slug": "pmksy",
+    "name": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+    "shortName": "Pradhan Mantri Krishi Sinchayee Yojana",
+    "tagline": "Expanding Cultivable Area & Maximizing Water-Use Efficiency Under 'Per Drop More Crop'",
+    "responsibleEntity": "Inter-Ministerial Implementation: Ministry of Agriculture & Farmers Welfare, Ministry of Jal Shakti, and Ministry of Rural Development"
+  },
+  "soil-health-card": {
+    "id": "soil-health-card",
+    "slug": "soil-health-card",
+    "name": "Soil Health Card (SHC) Scheme",
+    "shortName": "Soil Health Card Scheme",
+    "tagline": "Scientific Soil Nutrient Profiling & Site-Specific Guidance for Balanced Fertiliser Use",
+    "responsibleEntity": "Integrated Nutrient Management (INM) Division, Department of Agriculture & Farmers Welfare, Ministry of Agriculture & Farmers Welfare, Government of India"
+  },
+  "natural-farming": {
+    "id": "natural-farming",
+    "slug": "natural-farming",
+    "name": "National Mission on Natural Farming (NMNF)",
+    "shortName": "National Mission on Natural Farming",
+    "tagline": "Chemical-Free Agroecology Based on Indigenous Livestock, In-Situ Biomass & Biological Harmony",
+    "responsibleEntity": "Natural Farming Division, Department of Agriculture & Farmers Welfare, Ministry of Agriculture & Farmers Welfare, Government of India"
+  }
+}

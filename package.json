@@ -1,0 +1,22 @@
+{
+  "name": "sustainable-agriculture-india",
+  "version": "1.0.0",
+  "description": "Government Policies for Sustainable Agriculture in India and Their Impact - Team AQUA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node tests/test_policies.js"
+  },
+  "keywords": [
+    "sustainable-agriculture",
+    "india",
+    "government-policies",
+    "team-aqua"
+  ],
+  "author": "TEAM AQUA",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
