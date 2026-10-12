@@ -50,12 +50,75 @@
       <p>Actual results vary by region and farming method.</p>
     </section>
 
-    <section id="quiz">
-      <h2>Test Your Knowledge</h2>
-      <p>Which resource does drip irrigation help conserve?</p>
-      <button onclick="checkAnswer('water')">Water</button>
-      <button onclick="checkAnswer('plastic')">Plastic</button>
-      <p id="quiz-result" aria-live="polite"></p>
+    <section id="quiz" class="quiz-section">
+      <div class="quiz-header">
+        <h2>Test Your Knowledge</h2>
+        <p class="quiz-subtitle">How much do you know about sustainable agriculture in India?</p>
+      </div>
+
+      <!-- Active Quiz View -->
+      <div id="quiz-container" class="quiz-container">
+        <!-- Progress Bar & Top Bar Info -->
+        <div class="quiz-top-bar">
+          <span class="quiz-progress-text" id="quiz-progress-text" aria-live="polite">Question 1 of 15</span>
+          <span class="quiz-score-live" id="quiz-score-live">Score: 0 / 15</span>
+        </div>
+
+        <div class="quiz-progress-bar-container" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="15" aria-label="Quiz progress">
+          <div class="quiz-progress-bar-fill" id="quiz-progress-fill"></div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="quiz-card" id="quiz-card">
+          <h3 class="quiz-question" id="quiz-question-text">Loading question...</h3>
+          
+          <div class="quiz-options" id="quiz-options" role="radiogroup" aria-label="Question options">
+            <!-- Dynamic option buttons rendered via script.js -->
+          </div>
+
+          <!-- Answer Feedback & Explanation Box -->
+          <div class="quiz-feedback" id="quiz-feedback" style="display: none;" aria-live="polite">
+            <div class="feedback-status" id="feedback-status"></div>
+            <p class="feedback-explanation" id="feedback-explanation"></p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="quiz-actions">
+            <button type="button" id="quiz-submit-btn" class="quiz-btn primary-btn" disabled>Submit Answer</button>
+            <button type="button" id="quiz-next-btn" class="quiz-btn next-btn" style="display: none;">Next Question</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Results View (Initially Hidden) -->
+      <div id="quiz-results-container" class="quiz-results-container" style="display: none;" aria-live="polite">
+        <div class="results-card">
+          <div class="results-badge" id="results-badge" aria-hidden="true">🌱</div>
+          <h3>Quiz Completed!</h3>
+          <p class="results-score-display" id="results-score-display">You scored <strong>0</strong> out of <strong>15</strong> (0%)</p>
+          
+          <div class="results-message-box">
+            <p id="results-message"></p>
+          </div>
+
+          <div class="results-stats">
+            <div class="stat-box stat-correct">
+              <span class="stat-label">Correct</span>
+              <span class="stat-val" id="stat-correct-val">0</span>
+            </div>
+            <div class="stat-box stat-incorrect">
+              <span class="stat-label">Incorrect</span>
+              <span class="stat-val" id="stat-incorrect-val">0</span>
+            </div>
+            <div class="stat-box stat-accuracy">
+              <span class="stat-label">Accuracy</span>
+              <span class="stat-val" id="stat-accuracy-val">0%</span>
+            </div>
+          </div>
+
+          <button type="button" id="quiz-restart-btn" class="quiz-btn restart-btn">Try Again</button>
+        </div>
+      </div>
     </section>
   </main>
 
