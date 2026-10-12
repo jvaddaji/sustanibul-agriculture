@@ -1,0 +1,113 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #26382d;
+  background: #f4f8f2;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+  background: #176b45;
+}
+
+header h1 {
+  font-size: clamp(26px, 4vw, 42px);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+section {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 28px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #0000000d;
+}
+
+h2 {
+  color: #176b45;
+}
+
+#policy-list,
+#practice-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.policy-card {
+  padding: 20px;
+  background: #edf7ed;
+  border-left: 4px solid #32965e;
+  border-radius: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+button {
+  padding: 12px 18px;
+  margin: 6px;
+  background: #176b45;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #104b30;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #173e2c;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  section {
+    margin: 14px;
+    padding: 20px;
+  }
+
+  nav {
+    gap: 12px;
+  }
+}
